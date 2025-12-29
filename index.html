@@ -1,0 +1,35 @@
+---
+layout: default
+title: Home
+---
+
+<div class="home">
+  <h1 class="page-heading">Tech Notes</h1>
+  
+  <p class="intro">Welcome to my tech notes blog! Here I document my learnings, insights, and solutions to technical challenges.</p>
+
+  <div class="post-list">
+    {% for post in site.posts %}
+      <article class="post-item">
+        <h2>
+          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        </h2>
+        <p class="post-meta">
+          <time datetime="{{ post.date | date_to_xmlschema }}">
+            {{ post.date | date: "%B %-d, %Y" }}
+          </time>
+          {% if post.categories.size > 0 %}
+            • 
+            {% for category in post.categories %}
+              <span class="category">{{ category }}</span>
+            {% endfor %}
+          {% endif %}
+        </p>
+        <div class="post-excerpt">
+          {{ post.excerpt }}
+        </div>
+        <a href="{{ post.url | relative_url }}" class="read-more">Read more →</a>
+      </article>
+    {% endfor %}
+  </div>
+</div>
